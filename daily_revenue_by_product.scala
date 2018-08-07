@@ -18,6 +18,7 @@ val products_raw = Source.fromFile("/export/home/cxm350/spark_data/retail_db/pro
 val products = products_raw.map(rec => (rec.split(",")(0).toInt, rec.split(",")(2))).toMap
 val pr_bv = sc.broadcast(products)
 
+// Get the count while filtering COMPLETE and CLOSED orders
 val completed_order_cnt = sc.accumulator(0, "Completed/Closed Order Count")
 val non_complete_order_cnt = sc.accumulator(0, "Non Complete Order Count")
 
